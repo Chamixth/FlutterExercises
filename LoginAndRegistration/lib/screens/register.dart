@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      title: 'Flutter Demo',
+      title: 'Register',
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -31,14 +31,14 @@ class Login extends StatelessWidget{
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login"),
+        title: Text("Register"),
         backgroundColor: Colors.lightBlue,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Padding(padding: const EdgeInsets.only(top: 60.0),
+            Padding(padding: const EdgeInsets.only(top: 20.0),
               child: Center(
                 child: Container(
                     width: 200,
@@ -47,7 +47,7 @@ class Login extends StatelessWidget{
               ),
             ),const Padding(
 
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 30, bottom: 0),
+              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
               child: TextField(
 
                 decoration: InputDecoration(
@@ -58,26 +58,47 @@ class Login extends StatelessWidget{
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 30, bottom: 0),
+              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
+              child: TextField(
+                decoration: InputDecoration(
+                    border:OutlineInputBorder(),
+                    labelText: "Email",
+                    hintText: "Please Enter a valid email"
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
                     border:OutlineInputBorder(),
                     labelText: "Password",
-                    hintText: "Enter a secure password"
+                    hintText: "Please enter a secure password"
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border:OutlineInputBorder(),
+                    labelText: "Re-Enter Password",
+                    hintText: "Please the same password you've type."
                 ),
               ),
             ),
             Container(
               height: 100,
               width: 250,
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 30, bottom: 0),
+              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 0),
 
               child: ElevatedButton(
                 onPressed: (){
-                  print("Login Successfully");
+                  print("Registered Successfully");
                 },
-                child: Text("Login",style: TextStyle(color: Colors.black,fontSize: 30),),
+                child: Text("Register",style: TextStyle(color: Colors.black,fontSize: 30),),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.lightBlue,primary: Colors.white),
               ),
             )
