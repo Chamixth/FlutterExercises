@@ -33,7 +33,7 @@ class Login extends StatelessWidget{
       appBar: AppBar(
         title: Text("Register"),
         backgroundColor: Colors.lightBlue,
-        centerTitle: true,
+        centerTitle: false,
       ),
       body: SingleChildScrollView(
         child: Column(
