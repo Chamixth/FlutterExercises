@@ -81,6 +81,7 @@ class Login extends StatelessWidget{
               child: ElevatedButton(
                 onPressed: (){
                   authController.loginUser();
+                  Navigator.pushNamed(context, 'lib/screens/HomePage.dart');
                 },
                 child: Text("Login",style: TextStyle(color: Colors.black,fontSize: 30),),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.lightBlue,primary: Colors.white),

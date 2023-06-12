@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_and_registration/services/register_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
 }
 
 class Login extends StatelessWidget{
+  SignupController signupController = SignupController();
+  TextEditingController passwordChecker = TextEditingController();
   @override
   Widget build(BuildContext context){
 
@@ -45,44 +48,47 @@ class Login extends StatelessWidget{
                     height: 150,
                     child: Image.asset('asset/login.png')),
               ),
-            ),const Padding(
+            ), Padding(
 
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
               child: TextField(
-
-                decoration: InputDecoration(
+                controller: signupController.usernameController,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'User Name',
                     hintMaxLines: 10
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
-              child: TextField(
-                decoration: InputDecoration(
+             Padding(
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
+              child:  TextField(
+                controller: signupController.emailController,
+                decoration: const InputDecoration(
                     border:OutlineInputBorder(),
                     labelText: "Email",
                     hintText: "Please Enter a valid email"
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
+             Padding(
+              padding:const  EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
               child: TextField(
+                controller: signupController.passwordController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border:OutlineInputBorder(),
                     labelText: "Password",
                     hintText: "Please enter a secure password"
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
+              Padding(
+              padding:EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 0),
               child: TextField(
+                controller:passwordChecker,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration:const InputDecoration(
                     border:OutlineInputBorder(),
                     labelText: "Re-Enter Password",
                     hintText: "Please the same password you've type."
@@ -96,7 +102,19 @@ class Login extends StatelessWidget{
 
               child: ElevatedButton(
                 onPressed: (){
-                  print("Registered Successfully");
+                  if(signupController.usernameController.text.isNotEmpty||signupController.passwordController.text.isNotEmpty||signupController.emailController.text.isNotEmpty||passwordChecker.text.isEmpty) {
+                    if (signupController.passwordController.text == passwordChecker.text) {
+                      signupController.RegisterUser();
+                    } else {
+                      print("Password incorrect");
+                    }
+                  }else{
+                    AlertDialog(
+                      title: Text("!!!Alert!!!"),
+                      content: Text("Input Correct data"),
+                      actions: <Widget>[ElevatedButton(onPressed: (){}, child: Text("Ok"))],
+                    );
+                  }
                 },
                 child: Text("Register",style: TextStyle(color: Colors.black,fontSize: 30),),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.lightBlue,primary: Colors.white),
