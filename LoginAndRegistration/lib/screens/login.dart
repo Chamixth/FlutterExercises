@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:login_and_registration/services/auth_controller.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+   MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
 }
 
 class Login extends StatelessWidget{
+
+  AuthController authController = AuthController();
+
   @override
   Widget build(BuildContext context){
 
@@ -45,23 +49,24 @@ class Login extends StatelessWidget{
                     height: 150,
                     child: Image.asset('asset/login.png')),
               ),
-            ),const Padding(
+            ), Padding(
 
               padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 30, bottom: 0),
               child: TextField(
-
-                decoration: InputDecoration(
+                controller: authController.usernameController,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'User Name',
                     hintMaxLines: 10
                 ),
               ),
             ),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 30, bottom: 0),
               child: TextField(
+                controller: authController.passwordController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border:OutlineInputBorder(),
                     labelText: "Password",
                     hintText: "Enter a secure password"
@@ -75,7 +80,7 @@ class Login extends StatelessWidget{
 
               child: ElevatedButton(
                 onPressed: (){
-                  print("Login Successfully");
+                  authController.loginUser();
                 },
                 child: Text("Login",style: TextStyle(color: Colors.black,fontSize: 30),),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.lightBlue,primary: Colors.white),
@@ -91,12 +96,3 @@ class Login extends StatelessWidget{
 
 }
 
-class MyAppState extends ChangeNotifier{
-  var welcome = "Hello";
-  @override
-  void notifyListeners() {
-    // TODO: implement notifyListeners
-    welcome = "Welcome to the page";
-    super.notifyListeners();
-  }
-}
