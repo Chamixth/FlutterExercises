@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login_and_registration/services/auth_controller.dart';
 
+import 'HomePage.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +17,6 @@ class MyApp extends StatelessWidget {
 
       title: 'Flutter Demo',
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -28,10 +29,15 @@ class MyApp extends StatelessWidget {
 
 class Login extends StatelessWidget{
 
+
+
   AuthController authController = AuthController();
 
   @override
   Widget build(BuildContext context){
+    void onSuccess(){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -80,8 +86,8 @@ class Login extends StatelessWidget{
 
               child: ElevatedButton(
                 onPressed: (){
-                  authController.loginUser();
-                  Navigator.pushNamed(context, 'lib/screens/HomePage.dart');
+                  authController.loginUser(onSuccess);
+
                 },
                 child: Text("Login",style: TextStyle(color: Colors.black,fontSize: 30),),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.lightBlue,primary: Colors.white),

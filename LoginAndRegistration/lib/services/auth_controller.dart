@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-class AuthController {
+ class AuthController {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  Future loginUser() async {
+  Future loginUser(void Function() onSuccess) async {
     const url = "http://10.0.2.2:8080/login";
 
     var response = await http.post(
@@ -23,8 +23,10 @@ class AuthController {
 
     if (response.statusCode == 200) {
       final loginArr = jsonDecode(response.body);
-
       print(loginArr);
+      onSuccess();
+
+
     } else {
       print("Login Error");
     }
