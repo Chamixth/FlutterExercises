@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login_and_registration/screens/GridViewHome.dart';
 
 import '../models/Models.dart';
 import '../services/UserData_Controller.dart';
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage>{
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("User Data"),
+        title: const Text("User Data: List View"),
         backgroundColor: Colors.lightBlue,
       ),
       backgroundColor: Colors.white,
@@ -78,7 +79,9 @@ class _HomePageState extends State<HomePage>{
             ),
             ListTile(
               title:Text("GridView"),
-              onTap:(){} ,
+              onTap:(){
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => GridViewHome())));
+              } ,
             )
           ],
         ),
