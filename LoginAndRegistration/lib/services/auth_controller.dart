@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
   TextEditingController passwordController = TextEditingController();
 
   Future loginUser(void Function() onSuccess) async {
+    BuildContext context;
     const url = "http://10.0.2.2:8080/login";
 
     var response = await http.post(
@@ -22,11 +23,10 @@ import 'package:http/http.dart' as http;
     );
 
     if (response.statusCode == 200) {
+
       final loginArr = jsonDecode(response.body);
       print(loginArr);
       onSuccess();
-
-
     } else {
       print("Login Error");
     }

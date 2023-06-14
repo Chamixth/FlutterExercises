@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_and_registration/screens/GridViewHome.dart';
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage>{
   List<User>? user;
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -24,6 +27,9 @@ class _HomePageState extends State<HomePage>{
   }
   Future<void> getData()async{
     user = await getAllUsers();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   Widget build(BuildContext context){
@@ -34,7 +40,7 @@ class _HomePageState extends State<HomePage>{
         backgroundColor: Colors.lightBlue,
       ),
       backgroundColor: Colors.white,
-      body: ListView.builder(
+      body:isLoading==true? Center(child: CircularProgressIndicator()): ListView.builder(
         itemCount: user?.length??0,
         itemBuilder: (context,index){
           if(user == null){

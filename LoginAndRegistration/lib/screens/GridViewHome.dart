@@ -23,6 +23,9 @@ class _GridViewHomeState extends State<GridViewHome>{
   }
   Future<void> getData()async{
     user = await getAllUsers();
+    setState(() {
+
+    });
   }
 
   Widget build(BuildContext context){
