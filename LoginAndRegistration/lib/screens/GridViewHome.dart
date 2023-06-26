@@ -13,6 +13,7 @@ class GridViewHome extends StatefulWidget{
 
 class _GridViewHomeState extends State<GridViewHome>{
   List<User>? user;
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -24,7 +25,7 @@ class _GridViewHomeState extends State<GridViewHome>{
   Future<void> getData()async{
     user = await getAllUsers();
     setState(() {
-
+        isLoading = false;
     });
   }
 
@@ -36,7 +37,7 @@ class _GridViewHomeState extends State<GridViewHome>{
         backgroundColor: Colors.deepPurple,
       ),
       backgroundColor: Colors.white,
-      body: GridView.builder(
+      body:isLoading == true? Center(child: CircularProgressIndicator()): GridView.builder(
         physics: ScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
